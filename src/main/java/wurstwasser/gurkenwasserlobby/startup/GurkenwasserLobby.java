@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import wurstwasser.gurkenwasserlobby.commands.*;
 import wurstwasser.gurkenwasserlobby.items.*;
 import wurstwasser.gurkenwasserlobby.listener.*;
+import wurstwasser.gurkenwasserlobby.messages.messages;
 
 
 public final class GurkenwasserLobby extends JavaPlugin {
@@ -23,7 +24,7 @@ public final class GurkenwasserLobby extends JavaPlugin {
 
         instance = this;
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
-        getLogger().info("GurkenwasserLobby Plugin wird aktiviert");
+        getLogger().info(messages.PREFIX+ "GurkenwasserLobby Plugin wird aktiviert");
 
         Bukkit.getPluginManager().registerEvents(new Join(), this);
         Bukkit.getPluginManager().registerEvents(new JoinEvent(), this);
@@ -40,7 +41,7 @@ public final class GurkenwasserLobby extends JavaPlugin {
         // Welt laden
         World world = Bukkit.getWorld(worldName);
         if (world == null) {
-            getLogger().info("Welt " + worldName + " ist nicht geladen, versuche zu laden...");
+            getLogger().info(messages.PREFIX+ "Welt " + worldName + " ist nicht geladen, versuche zu laden...");
             world = Bukkit.createWorld(new org.bukkit.WorldCreator(worldName));
         }
 
@@ -58,15 +59,15 @@ public final class GurkenwasserLobby extends JavaPlugin {
             world.setGameRule(GameRule.DO_FIRE_TICK, false);
             world.setGameRule(GameRule.MOB_GRIEFING, false);
 
-            getLogger().info("Einstellungen für die Welt " + worldName + " wurden erfolgreich gesetzt.");
+            getLogger().info(messages.PREFIX+ "Einstellungen für die Welt " + worldName + " wurden erfolgreich gesetzt.");
         } else {
-            getLogger().severe("Welt " + worldName + " konnte nicht gefunden oder erstellt werden.");
+            getLogger().severe(messages.PREFIX+ "Welt " + worldName + " konnte nicht gefunden oder erstellt werden.");
         }
     }
 
     @Override
     public void onDisable() {
-        getLogger().info("GurkenwasserLobby Plugin wird deaktiviert");
+        getLogger().info(messages.PREFIX+ "GurkenwasserLobby Plugin wird deaktiviert");
     }
 
     public static GurkenwasserLobby getInstance() {
